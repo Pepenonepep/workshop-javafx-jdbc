@@ -3,6 +3,7 @@ module com.onepep {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;
+    requires javafx.base;
 
     opens com.onepep to javafx.fxml;
     opens com.onepep.gui to javafx.fxml;
