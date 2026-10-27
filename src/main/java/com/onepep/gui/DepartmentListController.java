@@ -15,8 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 
 public class DepartmentListController implements Initializable {
@@ -51,12 +49,13 @@ public class DepartmentListController implements Initializable {
     }
 
     private void initializeNodes() {
-        tableColumnId.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getId()).asObject());
-        tableColumnName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
+        tableColumnId.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("id"));
+        tableColumnName.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("name"));
 
         Stage stage = (Stage) App.getMainScene().getWindow();
-        tableViewDepartments.prefHeightProperty().bind(stage.heightProperty());
-
+        if (stage != null) {
+            tableViewDepartments.prefHeightProperty().bind(stage.heightProperty());
+        }
     }
 
     public void updateTableView() {

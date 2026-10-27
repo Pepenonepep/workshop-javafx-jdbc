@@ -1,20 +1,16 @@
 package com.onepep.model.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.onepep.model.dao.DaoFactory;
+import com.onepep.model.dao.DepartmentDao;
 import com.onepep.model.entities.Department;
 
 public class DepartmentService {
 
-    public List<Department> findAll() {
-        List<Department> list = new ArrayList<>();
-        list.add(new Department(1, "Books"));
-        list.add(new Department(2, "Electronics"));
-        list.add(new Department(3, "Computer"));
-        list.add(new Department(4, "Computers"));
-        list.add(new Department(5, "Computers"));
+    private DepartmentDao dao = DaoFactory.createDepartmentDao();
 
-        return list;
+    public List<Department> findAll() {
+        return dao.findAll();
     }
 }

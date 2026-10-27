@@ -8,7 +8,6 @@ import java.util.function.Consumer;
 import com.onepep.App;
 import com.onepep.gui.util.Alerts;
 import com.onepep.model.services.DepartmentService;
-import com.onepep.gui.DepartmentListController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +71,8 @@ public class MainViewController implements Initializable {
 
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+        } catch (RuntimeException e) {
+            Alerts.showAlert("Error", "Error loading data", e.getMessage(), AlertType.ERROR);
         }
     }
 
