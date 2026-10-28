@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.onepep.App;
+import com.onepep.gui.listeners.DataChangeListener;
 import com.onepep.gui.util.Alerts;
 import com.onepep.gui.util.Utils;
 import com.onepep.model.entities.Department;
@@ -26,7 +27,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangeListener {
     private DepartmentService service;
 
     @FXML
@@ -86,6 +87,7 @@ public class DepartmentListController implements Initializable {
             DepartmentFormController controller = loader.getController();
             controller.setDeparment(obj);
             controller.setDepartmentService(new DepartmentService());
+            controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
@@ -99,6 +101,11 @@ public class DepartmentListController implements Initializable {
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
         }
+    }
+
+    @Override
+    public void onDataChanged() {
+        updateTableView();
     }
 
 }
