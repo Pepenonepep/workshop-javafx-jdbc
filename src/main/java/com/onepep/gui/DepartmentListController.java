@@ -46,7 +46,8 @@ public class DepartmentListController implements Initializable {
     @FXML
     public void onBtnNewAction(ActionEvent event) {
         Stage parentStage = Utils.currentStage(event);
-        createDialogForm("/com/onepep/gui/DepartmentFrom.fxml", parentStage);
+        Department obj = new Department();
+        createDialogForm(obj, "/com/onepep/gui/DepartmentFrom.fxml", parentStage);
     }
 
     public void setDepartmentService(DepartmentService service) {
@@ -77,10 +78,14 @@ public class DepartmentListController implements Initializable {
         tableViewDepartments.setItems(obsList);
     }
 
-    private void createDialogForm(String absoluteName, Stage parentStage) {
+    private void createDialogForm(Department obj, String absoluteName, Stage parentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             Pane pane = loader.load();
+
+            DepartmentFormController controller = loader.getController();
+            controller.setDeparment(obj);
+            controller.updateFormData();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Enter Department data");
