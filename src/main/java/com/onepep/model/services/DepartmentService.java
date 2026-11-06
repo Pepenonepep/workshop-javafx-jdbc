@@ -1,10 +1,9 @@
 package com.onepep.model.services;
 
-import java.util.List;
-
 import com.onepep.model.dao.DaoFactory;
 import com.onepep.model.dao.DepartmentDao;
 import com.onepep.model.entities.Department;
+import java.util.List;
 
 public class DepartmentService {
 
@@ -20,5 +19,9 @@ public class DepartmentService {
         } else {
             dao.update(obj);
         }
+    }
+
+    public void remove(Department obj) {
+        dao.deleteById(obj.getId());
     }
 }

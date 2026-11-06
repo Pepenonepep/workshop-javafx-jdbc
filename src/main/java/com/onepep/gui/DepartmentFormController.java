@@ -113,6 +113,7 @@ public class DepartmentFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initializeNodes();
     }
 
     private void initializeNodes() {
@@ -125,7 +126,7 @@ public class DepartmentFormController implements Initializable {
             throw new IllegalStateException("Entity was null");
         }
         txtId.setText(String.valueOf(entity.getId()));
-        txtId.setText(entity.getName());
+        txtName.setText(entity.getName());
     }
 
     private void setErrorMessages(Map<String, String> errors) {

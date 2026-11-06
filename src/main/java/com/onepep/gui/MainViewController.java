@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import com.onepep.App;
 import com.onepep.gui.util.Alerts;
 import com.onepep.model.services.DepartmentService;
+import com.onepep.model.services.SellerService;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,10 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSellerAction() {
-        System.out.println("onMenuItemSellerAction");
+        loadView("/com/onepep/gui/SellerList.fxml", (SellerListController controller) -> {
+            controller.setSellerService(new SellerService());
+            controller.updateTableView();
+        });
     }
 
     @FXML
@@ -50,7 +54,8 @@ public class MainViewController implements Initializable {
     }
 
     private synchronized void loadView(String absoluteName) {
-        loadView(absoluteName, x -> {});
+        loadView(absoluteName, x -> {
+        });
     }
 
     private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
