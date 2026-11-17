@@ -225,6 +225,7 @@ public class SellerFormController implements Initializable {
         labelErrorEmail.setText(fields.contains("email") ? errors.get("email") : "");
         labelErrorBirthDate.setText(fields.contains("birthDate") ? errors.get("birthDate") : "");
         labelErrorBaseSalary.setText(fields.contains("baseSalary") ? errors.get("baseSalary") : "");
+
     }
 
     private void initializeComboBoxDepartment() {
